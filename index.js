@@ -1,24 +1,25 @@
 // Javascript Errors
-
 /* EvalError - Creates an instance representing an error that occurs regarding the 
     global function eval() */
-try {
-    throw new EvalError('Hello', 'index.js', 5);
-} catch (e) {
-    console.log(e instanceof EvalError); // true
-    console.log(e.message);              // "Hello"
-    console.log(e.name);                 // "EvalError"
-    console.log(e.fileName);             // "someFile.js"
-    console.log(e.lineNumber);           // 10
-    console.log(e.columnNumber);         // 0
-    console.log(e.stack);                // "@Scratchpad/2:2:9\n"
+function evalError() {
+    try {
+        throw new EvalError('Hello', 'index.js', 5);
+    } catch (e) {
+        console.log(e instanceof EvalError); // true
+        console.log(e.message);              // "Hello"
+        console.log(e.name);                 // "EvalError"
+        console.log(e.fileName);             // "someFile.js"
+        console.log(e.lineNumber);           // 10
+        console.log(e.columnNumber);         // 0
+        console.log(e.stack);                // "@Scratchpad/2:2:9\n"
+    }
 }
 
 /* RangeError - is thrown when trying to pass a value as an argument to a function 
 that does not allow a range that includes the value.*/
 
 // This function will stop the code if it runs into an error
-function check(n) {
+function rangeError(n) {
     if (!(n >= -500 && n <= 500)) {
         throw new RangeError("The argument must be between -500 and 500.")
     }
@@ -27,7 +28,7 @@ function check(n) {
 /* This try/catch statement will still run code even after error is found
 in try statement */
 try {
-    check(2000)
+    rangeError(2000)
 }
 catch (error) {
     if (error instanceof RangeError) {
@@ -35,8 +36,6 @@ catch (error) {
         // Handle the error
     }
 }
-// check(2000);
-console.log('Hello Avery')
 
 /* ReferenceError - object represents an error when a non-existent variable is referenced.*/
 try {
@@ -77,3 +76,16 @@ try {
     console.error(e.columnNumber);
     console.error(e.stack);
 }
+function error() {
+    try {
+        throw Error('This is an error messsage fam.');
+    } catch (e) {
+        if (e instanceof Error) {
+            console.log("This is the second error message fam.");
+            console.log(e.error)
+            console.log(e.stack);
+        }
+    }
+}
+
+error();
